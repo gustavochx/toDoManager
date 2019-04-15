@@ -1,16 +1,13 @@
-/**
- * @format
- */
+import React from 'react';
+import { AppRegistry, SafeAreaView } from 'react-native';
+import Routes from './src/services/Routes';
+import { name as appName } from './app.json';
 
-import React, { Component } from 'react'
-import {AppRegistry} from 'react-native';
-import Login from './src/screens/Login';
-import {name as appName} from './app.json';
-
-class Index extends Component {
-    render() {
-        return (<Login email='gustavochx@gmail.com'/>);
-    }
-}
-
-AppRegistry.registerComponent(appName, () => Login);
+const wrappedRoutes = () => {
+    return (
+        <SafeAreaView style={{ flex: 1 }}>
+                <Routes />
+        </SafeAreaView>
+    );
+};
+AppRegistry.registerComponent(appName, () => wrappedRoutes);
