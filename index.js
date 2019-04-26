@@ -2,6 +2,7 @@ import React from 'react';
 import { AppRegistry, SafeAreaView } from 'react-native';
 import Routes from './src/services/Routes';
 import { name as appName } from './app.json';
+import { initializeFirebaseApi } from './src/services/FirebaseApi';
 
 const wrappedRoutes = () => {
     return (
@@ -10,4 +11,7 @@ const wrappedRoutes = () => {
         </SafeAreaView>
     );
 };
-AppRegistry.registerComponent(appName, () => wrappedRoutes);
+AppRegistry.registerComponent(appName, () => {
+    initializeFirebaseApi();
+    return wrappedRoutes;
+});

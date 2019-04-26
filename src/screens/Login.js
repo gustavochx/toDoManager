@@ -1,14 +1,25 @@
 import React, { Component } from 'react';
 import { SafeAreaView, KeyboardAvoidingView, View, Image, TextInput, Button, Text, StyleSheet, Alert } from 'react-native';
+import { signOnFirebaseAsync } from '../services/FirebaseApi';
 
 const img = require('../assets/ToDoList.png');
 
 export default class Login extends Component {
 
+    async _signInAsync() {
+        try {
+            const user = await signOnFirebaseAsync(this.state.email, this.state.password);
+            Alert.alert("User Authenticated",`User ${user.email} has succesfuly been authenticated!`);
+        } catch (error){
+            Alert.alert('Failed on sign in User', error.message);
+        }
+    };
+
+
     static navigationOptions = {
         header: null
     };
-
+    // AS telas do react é como se fosse uma funcao matematica 
     state = {
         email: this.props.email,
         password: ''
@@ -27,17 +38,16 @@ export default class Login extends Component {
                                     onChangeText={(text) => this.setState({ email: text})} />
                         <TextInput style={styles.input} placeholder='Password' secureTextEntry={true}
                                     onChangeText={(password) => this.setState({ password})}/>
-                        <Button title='Sign in' onPress={() => Alert.alert(`Email: ${this.state.email} \nPassword: ${this.state.password}`)}/>
+                        <Button title='Sign in' onPress={() => this._signInAsync()}/>
                         <View style={styles.textConteiner}>
-                            <Text>Not a member? Let's</Text>
-                        < Text style={styles.textRegister} onPress={
+                            <Text>Not a member?</Text>
+                            <Text style={styles.textRegister} onPress={
                             () => { const { navigate } = this.props.navigation;
                                                     navigate('pageRegister');
-                            }}>Register</Text>
+                            }}>{"\n"}Let's Register</Text>
                         </View>
                     </View>
                 </KeyboardAvoidingView>
-            
             );
     }
 }
