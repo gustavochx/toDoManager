@@ -20,7 +20,7 @@ export default class Register extends Component {
     }
 
     static navigationOptions = {
-        header: null
+        title: 'Register'
     };
 
     state = {
