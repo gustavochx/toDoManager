@@ -1,6 +1,6 @@
 import { Platform } from 'react-native';
 import { createStackNavigator,createAppContainer, createBottomTabNavigator } from 'react-navigation';
-import { MainApp, Login, Register, ToDoTasks, DoneTasks, Task } from '../screens/Screens';
+import { MainApp, Login, Register, ToDoTasks, DoneTasks, Task, Perfil } from '../screens/Screens';
 
 const taskListTabNavigator = createBottomTabNavigator({
     pageToDoTasks: {
@@ -10,6 +10,11 @@ const taskListTabNavigator = createBottomTabNavigator({
     pageDoneTasks: {
         screen: DoneTasks,
         title: 'Done'
+    },
+
+    pagePerfil: {
+        screen: Perfil,
+        title: 'Perfil'
     }
 });
 
@@ -27,7 +32,8 @@ const Routes = createStackNavigator(
                 })
               }
         },
-        pageTask: { screen: Task }
+        pageTask: { screen: Task },
+        pagePerfil: {screen: Perfil }
     },
     {
         headerMode: 'screen'

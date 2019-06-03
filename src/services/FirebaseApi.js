@@ -55,3 +55,12 @@ export const readTasksFromFirebaseAsync = async (listener) => {
         listener(tasks);
     });
 };
+
+export const logoutFromFirebase = async() => {
+    try {
+        await firebase.auth().signOut();
+        return;
+    } catch (e) {
+        console.log(e);
+    }
+};

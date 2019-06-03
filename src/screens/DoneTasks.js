@@ -16,8 +16,6 @@ export default class DoneTasks extends Component {
             style={[styles.icon, { tintColor: tintColor }]} />)
     }
 
-
-
     render() {
         return (
             <View style={ styles.conteiner }>
@@ -28,7 +26,7 @@ export default class DoneTasks extends Component {
     }
 
     componentDidMount() {
-        readTasksFromFirebaseAsync(this._fetchTasks.bind(this)); 
+        readTasksFromFirebaseAsync(this._fetchTasks.bind(this));
     }
 
     _fetchTasks(tasks) {
